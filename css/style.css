@@ -1,0 +1,283 @@
+body{
+	background-color: #C5D93A;
+	font-family: 'Roboto', sans-serif;
+}
+
+.sectionblock{
+	margin-left: auto;
+    margin-right: auto;
+    margin-top: -25px;
+	text-align: center;
+	width: 25vw;
+}
+
+.block0{
+	text-align: center;
+	background-color: #C4D939;
+	width: 100%;
+	padding-top: 5%;
+	padding-bottom: 5%;
+	height: 250px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.block1{
+	text-align: center;
+	background-color: #F9FAEA;
+	padding-top: 5%;
+	padding-bottom: 5%;
+	margin-top: -50%;
+	margin-bottom: 0px;
+	opacity: 0.7;
+}
+
+.block{
+	padding: 20px;
+	text-align: left;
+	background-color: #E2D8D8;
+}
+
+
+.infotext{
+	position: relative;
+	text-align: center;
+	opacity: 0.7;
+	background-color: #F9FAEA;
+	padding: 3%;
+}
+
+.infoblock{
+	padding-top: 50px;
+	height: 65vh;
+}
+
+.locationblock{
+/*	background-color: #DAD3D3;*/
+	margin: 0px;
+	padding: 10px;
+}
+
+/*.locationblock:hover{
+	background-color: #FF0000;
+}*/	
+
+
+.bezier{
+	-webkit-transition: all 2s cubic-bezier(0,1,.34,.97);
+	-moz-transition: all 2s cubic-bezier(0,1,.34,.97);
+	-ms-transition: all 2s cubic-bezier(0,1,.34,.97);
+	-o-transition: all 2s cubic-bezier(0,1,.34,.97);
+	transition: all 2s cubic-bezier(0,1,.34,.97);
+}
+
+#navibar {
+	opacity: 0.9;
+	background-color: #DEF0C8;
+	box-shadow: 0 0 50px rgba(0,0,0,0.8);
+}
+
+/*for animations*/
+
+.hidden2{
+     opacity:0;
+}
+.visible2{
+     opacity:1;
+}
+
+.circular {
+	width: 300px;
+	height: 300px;
+	border-radius: 150px;
+	-webkit-border-radius: 150px;
+	-moz-border-radius: 150px;
+	background: url(../images/sphere3.jpg) no-repeat;
+	background-size: contain;
+	background-position:2%;
+	}
+
+#map-canvas {
+  width: 100%;
+  height: 40vh;
+}
+.viewblock{
+	
+}
+
+
+/* Clearfix hack by Nicolas Gallagher: http://nicolasgallagher.com/micro-clearfix-hack/ */
+.clearfix:before,
+.clearfix:after {
+	display: table;
+	content: " ";
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+#Over{
+	background-color: #4BB861;
+	margin-right:13%;
+	}
+
+#Docent{
+	background-color: #36B3E0;
+	}
+
+#Lessen{
+	background-color: #9D54A1;
+	}
+
+.normalnav{
+	margin-top: 20px;
+	text-align: center;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	float: right;
+	margin-right: 55px;
+	padding-left: 15px;
+	padding-right: 15px;
+
+	-webkit-transition: all 0.7s cubic-bezier(0, 1, 0.34, 0.97) 0s;
+	-moz-transition: all 0.7s cubic-bezier(0, 1, 0.34, 0.97) 0s;
+	-ms-transition: all 0.7s cubic-bezier(0, 1, 0.34, 0.97) 0s;
+	-o-transition: all 0.7s cubic-bezier(0, 1, 0.34, 0.97) 0s;
+	transition: all 0.7s cubic-bezier(0, 1, 0.34, 0.97) 0s;
+
+
+}
+.normalnav>a{
+	color: #FFF;
+	font-weight: normal;
+	text-transform: uppercase;
+	display: block;
+	font-size: 21px;
+	cursor:pointer;
+	text-decoration: none;
+}
+
+.normalnav:hover{
+	/*top:-20px;*/
+	background-color: #B21111;
+	margin-top: 15px;
+}
+
+#hamburgerid{
+	position:fixed;
+	display: block;
+	width: 50px;
+	height: 50px;
+	cursor:pointer;
+	top: 15px;
+	
+
+}
+
+
+#hamburgerid span{
+	position: absolute;
+    top: 50%;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 4px;
+    margin-top: -2px;
+    background-color: #5D809D;
+    font-size: 0px;
+    user-select: none;
+    transition: background-color 0.3s;
+}
+
+#hamburgerid span:before,
+#hamburgerid span:after {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #5D809D;
+    content: '';
+    transition: transform 0.3s;
+}
+
+#hamburgerid span:before {
+    transform: translateY(-250%);
+}
+ 
+#hamburgerid span:after {
+    transform: translateY(250%);
+}
+
+.nav-trigger:checked + #hamburgerid span:before {
+    transform: translateY(0) rotate(45deg);
+}
+ 
+.nav-trigger:checked + #hamburgerid span:after {
+    transform: translateY(0) rotate(-45deg);
+}
+
+.nav-trigger:checked + #hamburgerid span {
+    background-color: transparent;
+}
+
+
+/*PUSH MENU*/
+
+.navigation {
+    list-style: none;
+    background: #111;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.site-wrap {
+    min-width: 100%;
+    min-height: 100%;
+    background-color: #F9FAEA;
+    position: relative;
+    top: 0;
+    bottom: 100%;
+    left: 0;
+    z-index: 1;
+}
+
+
+.nav-trigger:checked + label{
+    left: 215px;
+}
+ 
+.nav-trigger:checked ~ .site-wrap {
+    left: 200px;
+    box-shadow: 0 0 5px 5px rgba(0,0,0,0.5);
+}
+
+.nav-trigger + label, .site-wrap {
+    transition: left 0.2s;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.nav-trigger {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+}
+
+input + label[for="nav-trigger"] {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 2;
+}
+
+.pushed{
+	
+}
