@@ -1,6 +1,19 @@
 body{
 	background-color: #F9FAEA;
-	font-family: "effra", 'Roboto', sans-serif;
+	font-family: 'Roboto', sans-serif;
+	font-size: 200%;
+	font-weight:300;
+}
+
+h1.blockheader{
+	font-family: 'Roboto', sans-serif;
+	font-size: 200%;
+	font-weight:300;
+}
+
+b{
+	font-weight: normal;
+	color: #C5D93A;
 }
 
   .row{
@@ -20,30 +33,35 @@ body{
 .infoblock{
 	padding-top: 50px;
 /*	height: 65vh*/;
-	font-size: 1.6em;
+	font-size: 1.4em;
 }
 
 .block0{
 	text-align: left;
 	padding-top: 5%;
-	padding-left: 0px;
-	padding-right: 0px;
+	padding-bottom: 5%;
+	padding-left: 10%;
+	padding-right: 10%;
 }
 
 .block1{
-	text-align: center;
+	text-align: left;
 	background-color:#CECDB9;
 	padding-top: 5%;
 	padding-bottom: 5%;
 	margin-bottom: 0px;
+	margin-right: 0%;
 	color: #FFF;
-	padding: 5%;
+	padding-left: 10%;
+	padding-right: 10%;
 }
 
-.block{
-	padding: 20px;
+.bedrijfsyoga{
 	text-align: left;
-	background-color: #E2D8D8;
+	padding-top: 5%;
+	padding-bottom: 5%;
+	padding-left: 10%;
+	padding-right: 10%;
 }
 
 
@@ -100,12 +118,12 @@ body{
 }
 
 .circular {
-	width: 300px;
-	height: 300px;
+	width: 200px;
+	height: 200px;
 	border-radius: 150px;
 	-webkit-border-radius: 150px;
 	-moz-border-radius: 150px;
-	background: url(../images/sphere3.jpg) no-repeat;
+	background: url(../images/stockface.jpeg) no-repeat;
 	background-size: contain;
 	background-position:2%;
 	}
@@ -142,6 +160,9 @@ body{
 #Lessen{
 	background-color: #9D54A1;
 	}
+#Bedrijfsyoga{
+	background-color: #E50F0F;
+}
 
 .normalnav{
 	margin-top: 20px;
@@ -172,8 +193,6 @@ body{
 }
 
 .normalnav:hover{
-	/*top:-20px;*/
-	background-color: #B21111;
 	margin-top: 15px;
 }
 
