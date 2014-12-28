@@ -26,22 +26,25 @@
 	}
 
 	function init() {
+		var ham = document.getElementById('hamburgerid');
 		var container = document.getElementById( 'st-container' ),
-			buttons = Array.prototype.slice.call( document.querySelectorAll('#st-trigger-effects > #hamburgerid') ),
+			buttons = Array.prototype.slice.call( document.querySelectorAll( '#st-trigger-effects > #hamburgerid' ) ),
 			// event type (if mobile use touch events)
 			eventtype = mobilecheck() ? 'touchstart' : 'click',
 			resetMenu = function() {
-				classie.remove( container, 'st-menu-open' );				
+				classie.remove( container, 'st-menu-open' );
+				classie.remove(ham, 'crossed');
 			},
 			bodyClickFn = function(evt) {
-				if( !hasParentClass( evt.target, 'st-menu' ) | hasParentClass( evt.target, 'smoothScroll' ) ) {
+				if( !hasParentClass( evt.target, 'st-menu' ) ) {
 					resetMenu();
 					document.removeEventListener( eventtype, bodyClickFn );
 				}
-			};
+			};	
 
 		buttons.forEach( function( el, i ) {
 			var effect = el.getAttribute( 'data-effect' );
+			var ham = document.getElementById('hamburgerid');
 			el.addEventListener( eventtype, function( ev ) {
 				ev.stopPropagation();
 				ev.preventDefault();
@@ -49,6 +52,7 @@
 				classie.add( container, effect );
 				setTimeout( function() {
 					classie.add( container, 'st-menu-open' );
+					classie.add(ham, 'crossed');
 				}, 25 );
 				document.addEventListener( eventtype, bodyClickFn );
 			});

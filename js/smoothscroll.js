@@ -1,1 +1,204 @@
-window.jQuery||alert("The jQuery library must be included before the smoothscroll.js file.  The plugin will not work propery."),function(a){function c(a){return"object"==typeof a?a:{top:a,left:a}}var b=a.scrollTo=function(b,c,d){a("div.st-content").scrollTo(b,c,d)};b.defaults={axis:"xy",duration:parseFloat(a.fn.jquery)>=1.3?0:1,limit:!0},b.window=function(){return a("div.st-content")._scrollable()},a.fn._scrollable=function(){return this.map(function(){var b=this,c=!b.nodeName||-1!=a.inArray(b.nodeName.toLowerCase(),["iframe","#document","html","body"]);if(!c)return b;var d=(b.contentWindow||b).document||b.ownerDocument||b;return/webkit/i.test(navigator.userAgent)||"BackCompat"==d.compatMode?d.body:d.documentElement})},a.fn.scrollTo=function(d,e,f){return"object"==typeof e&&(f=e,e=0),"function"==typeof f&&(f={onAfter:f}),"max"==d&&(d=9e9),f=a.extend({},b.defaults,f),e=e||f.duration,f.queue=f.queue&&f.axis.length>1,f.queue&&(e/=2),f.offset=c(f.offset),f.over=c(f.over),this._scrollable().each(function(){function m(a){h.animate(k,e,f.easing,a&&function(){a.call(this,d,f)})}if(null!=d){var j,g=this,h=a(g),i=d,k={},l=h.is("html,body");switch(typeof i){case"number":case"string":if(/^([+-]=)?\d+(\.\d+)?(px|%)?$/.test(i)){i=c(i);break}if(i=a(i,this),!i.length)return;case"object":(i.is||i.style)&&(j=(i=a(i)).offset())}a.each(f.axis.split(""),function(a,c){var d="x"==c?"Left":"Top",e=d.toLowerCase(),n="scroll"+d,o=g[n],p=b.max(g,c);if(j)k[n]=j[e]+(l?0:o-h.offset()[e]),f.margin&&(k[n]-=parseInt(i.css("margin"+d))||0,k[n]-=parseInt(i.css("border"+d+"Width"))||0),k[n]+=f.offset[e]||0,f.over[e]&&(k[n]+=i["x"==c?"width":"height"]()*f.over[e]);else{var q=i[e];k[n]=q.slice&&"%"==q.slice(-1)?parseFloat(q)/100*p:q}f.limit&&/^\d+$/.test(k[n])&&(k[n]=k[n]<=0?0:Math.min(k[n],p)),!a&&f.queue&&(o!=k[n]&&m(f.onAfterFirst),delete k[n])}),m(f.onAfter)}}).end()},b.max=function(b,c){var d="x"==c?"Width":"Height",e="scroll"+d;if(!a(b).is("html,body"))return b[e]-a(b)[d.toLowerCase()]();var f="client"+d,g=b.ownerDocument.documentElement,h=b.ownerDocument.body;return Math.max(g[e],h[e])-Math.min(g[f],h[f])}}(jQuery),function(a){function b(b,c,d){var e=c.hash.slice(1),f=document.getElementById(e)||document.getElementsByName(e)[0];if(f){b&&b.preventDefault();var g=a(d.target);if(!(d.lock&&g.is(":animated")||d.onBefore&&!1===d.onBefore(b,f,g))){if(d.stop&&g._scrollable().stop(!0),d.hash){var b=f.id==e?"id":"name",h=a("<a> </a>").attr(b,e).css({position:"absolute",top:a("div.st-content").scrollTop(),left:a("div.st-content").scrollLeft()});f[b]="",a("body").prepend(h),location=c.hash,h.remove(),f[b]=e}g.scrollTo(f,d).trigger("notify.serialScroll",[f])}}}var c=location.href.replace(/#.*/,""),d=a.localScroll=function(b){a("body").localScroll(b)};d.defaults={duration:1e3,axis:"y",event:"click",stop:!0,target:"div.st-content",reset:!0},d.hash=function(c){if(location.hash){if(c=a.extend({},d.defaults,c),c.hash=!1,c.reset){var e=c.duration;delete c.duration,a(c.target).scrollTo(0,c),c.duration=e}b(0,location,c)}},a.fn.localScroll=function(e){function f(){return!(!this.href||!this.hash||this.href.replace(this.hash,"")!=c||e.filter&&!a(this).is(e.filter))}return e=a.extend({},d.defaults,e),e.lazy?this.bind(e.event,function(c){var d=a([c.target,c.target.parentNode]).filter(f)[0];d&&b(c,d,e)}):this.find("a,area").filter(f).bind(e.event,function(a){b(a,this,e)}).end().end()}}(jQuery),jQuery(function(a){a.localScroll({filter:".smoothScroll"})});
+/**
+ * SmoothScroll
+ * This helper script created by DWUser.com.  Copyright 2012 DWUser.com.
+ * Dual-licensed under the GPL and MIT licenses.
+ * All individual scripts remain property of their copyrighters.
+ * Date: 10-Sep-2012
+ * Version: 1.0.1
+ */
+if (!window['jQuery']) alert('The jQuery library must be included before the smoothscroll.js file.  The plugin will not work propery.');
+
+/**
+ * jQuery.ScrollTo - Easy element scrolling using jQuery.
+ * Copyright (c) 2007-2012 Ariel Flesler - aflesler(at)gmail(dot)com | http://flesler.blogspot.com
+ * Dual licensed under MIT and GPL.
+ * @author Ariel Flesler
+ * @version 1.4.3.1
+ */
+;
+(function($) {
+    var h = $.scrollTo = function(a, b, c) {
+        $("div.st-content").scrollTo(a, b, c)
+    };
+    h.defaults = {
+        axis: 'xy',
+        duration: parseFloat($.fn.jquery) >= 1.3 ? 0 : 1,
+        limit: true
+    };
+    h.window = function(a) {
+        return $("div.st-content")._scrollable()
+    };
+    $.fn._scrollable = function() {
+        return this.map(function() {
+            var a = this,
+                isWin = !a.nodeName || $.inArray(a.nodeName.toLowerCase(), ['iframe', '#document', 'html', 'body']) != -1;
+            if (!isWin) return a;
+            var b = (a.contentWindow || a).document || a.ownerDocument || a;
+            return /webkit/i.test(navigator.userAgent) || b.compatMode == 'BackCompat' ? b.body : b.documentElement
+        })
+    };
+    $.fn.scrollTo = function(e, f, g) {
+        if (typeof f == 'object') {
+            g = f;
+            f = 0
+        }
+        if (typeof g == 'function') g = {
+            onAfter: g
+        };
+        if (e == 'max') e = 9e9;
+        g = $.extend({}, h.defaults, g);
+        f = f || g.duration;
+        g.queue = g.queue && g.axis.length > 1;
+        if (g.queue) f /= 2;
+        g.offset = both(g.offset);
+        g.over = both(g.over);
+        return this._scrollable().each(function() {
+            if (e == null) return;
+            var d = this,
+                $elem = $(d),
+                targ = e,
+                toff, attr = {},
+                win = $elem.is('html,body');
+            switch (typeof targ) {
+                case 'number':
+                case 'string':
+                    if (/^([+-]=)?\d+(\.\d+)?(px|%)?$/.test(targ)) {
+                        targ = both(targ);
+                        break
+                    }
+                    targ = $(targ, this);
+                    if (!targ.length) return;
+                case 'object':
+                    if (targ.is || targ.style) toff = (targ = $(targ)).offset()
+            }
+            $.each(g.axis.split(''), function(i, a) {
+                var b = a == 'x' ? 'Left' : 'Top',
+                    pos = b.toLowerCase(),
+                    key = 'scroll' + b,
+                    old = d[key],
+                    max = h.max(d, a);
+                if (toff) {
+                    attr[key] = toff[pos] + (win ? 0 : old - $elem.offset()[pos]);
+                    if (g.margin) {
+                        attr[key] -= parseInt(targ.css('margin' + b)) || 0;
+                        attr[key] -= parseInt(targ.css('border' + b + 'Width')) || 0
+                    }
+                    attr[key] += g.offset[pos] || 0;
+                    if (g.over[pos]) attr[key] += targ[a == 'x' ? 'width' : 'height']() * g.over[pos]
+                } else {
+                    var c = targ[pos];
+                    attr[key] = c.slice && c.slice(-1) == '%' ? parseFloat(c) / 100 * max : c
+                }
+                if (g.limit && /^\d+$/.test(attr[key])) attr[key] = attr[key] <= 0 ? 0 : Math.min(attr[key], max);
+                if (!i && g.queue) {
+                    if (old != attr[key]) animate(g.onAfterFirst);
+                    delete attr[key]
+                }
+            });
+            animate(g.onAfter);
+
+            function animate(a) {
+                $elem.animate(attr, f, g.easing, a && function() {
+                    a.call(this, e, g)
+                })
+            }
+        }).end()
+    };
+    h.max = function(a, b) {
+        var c = b == 'x' ? 'Width' : 'Height',
+            scroll = 'scroll' + c;
+        if (!$(a).is('html,body')) return a[scroll] - $(a)[c.toLowerCase()]();
+        var d = 'client' + c,
+            html = a.ownerDocument.documentElement,
+            body = a.ownerDocument.body;
+        return Math.max(html[scroll], body[scroll]) - Math.min(html[d], body[d])
+    };
+
+    function both(a) {
+        return typeof a == 'object' ? a : {
+            top: a,
+            left: a
+        }
+    }
+})(jQuery);
+
+/**
+ * jQuery.LocalScroll
+ * Copyright (c) 2007-2010 Ariel Flesler - aflesler(at)gmail(dot)com | http://flesler.blogspot.com
+ * Dual licensed under MIT and GPL.
+ * Date: 05/31/2010
+ * @author Ariel Flesler
+ * @version 1.2.8b
+ **/
+;
+(function(b) {
+    function g(a, e, d) {
+        var h = e.hash.slice(1),
+            f = document.getElementById(h) || document.getElementsByName(h)[0];
+        if (f) {
+            a && a.preventDefault();
+            var c = b(d.target);
+            if (!(d.lock && c.is(":animated") || d.onBefore && !1 === d.onBefore(a, f, c))) {
+                d.stop && c._scrollable().stop(!0);
+                if (d.hash) {
+                    var a = f.id == h ? "id" : "name",
+                        g = b("<a> </a>").attr(a, h).css({
+                            position: "absolute",
+                            top: b("div.st-content").scrollTop(),
+                            left: b("div.st-content").scrollLeft()
+                        });
+                    f[a] = "";
+                    b("body").prepend(g);
+                    location = e.hash;
+                    g.remove();
+                    f[a] = h
+                }
+                c.scrollTo(f, d).trigger("notify.serialScroll", [f])
+            }
+        }
+    }
+    var i = location.href.replace(/#.*/, ""),
+        c = b.localScroll = function(a) {
+            b("body").localScroll(a)
+        };
+    c.defaults = {
+        duration: 1E3,
+        axis: "y",
+        event: "click",
+        stop: !0,
+        target: "div.st-content",
+        reset: !0
+    };
+    c.hash = function(a) {
+        if (location.hash) {
+            a = b.extend({}, c.defaults, a);
+            a.hash = !1;
+            if (a.reset) {
+                var e = a.duration;
+                delete a.duration;
+                b(a.target).scrollTo(0, a);
+                a.duration = e
+            }
+            g(0, location, a)
+        }
+    };
+    b.fn.localScroll = function(a) {
+        function e() {
+            return !!this.href && !!this.hash && this.href.replace(this.hash, "") == i && (!a.filter || b(this).is(a.filter))
+        }
+        a = b.extend({}, c.defaults, a);
+        return a.lazy ? this.bind(a.event, function(d) {
+            var c = b([d.target, d.target.parentNode]).filter(e)[0];
+            c && g(d, c, a)
+        }) : this.find("a,area").filter(e).bind(a.event, function(b) {
+            g(b, this, a)
+        }).end().end()
+    }
+})(jQuery);
+
+// Initialize all .smoothScroll links
+jQuery(function($) {
+    $.localScroll({
+        filter: '.smoothScroll'
+    });
+});
