@@ -36,7 +36,7 @@
 				classie.remove(ham, 'crossed');
 			},
 			bodyClickFn = function(evt) {
-				if( !hasParentClass( evt.target, 'st-menu' ) ) {
+				if( !hasParentClass( evt.target, 'st-menu' ) || hasParentClass( evt.target, 'smoothScroll' ) ) {
 					resetMenu();
 					document.removeEventListener( eventtype, bodyClickFn );
 				}
